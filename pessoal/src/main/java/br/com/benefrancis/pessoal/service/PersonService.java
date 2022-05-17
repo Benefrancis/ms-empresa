@@ -45,4 +45,8 @@ public class PersonService {
 		return repo.findAll(pageRequest);
 	}
 
+	public Person findById(Long id) {
+		return repo.findById(id).orElse(null);
+	}
+
 }

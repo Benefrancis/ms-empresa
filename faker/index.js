@@ -43,7 +43,7 @@ function salvar(quantidade) {
 function savePerson(person) {
     (async () => {
         try {
-            const res = await fetch("http://localhost:8080/api/person", {
+            const res = await fetch("http://localhost:8080/api/v0/person", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -82,7 +82,7 @@ function savePerson(person) {
 function saveEmployee(employee) {
     (async () => {
         try {
-            const res = await fetch("http://localhost:8080/api/employee", {
+            const res = await fetch("http://localhost:8080/api/v0/employee", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -116,7 +116,7 @@ function getRandomInt(min, max) {
 
 (async () => {
     try {
-        const res = await fetch("http://localhost:8080/api/person", {
+        const res = await fetch("http://localhost:8080/api/v0/person", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

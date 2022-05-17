@@ -37,4 +37,8 @@ public class EmployeeService {
 		return repo.findAll(pageRequest);
 	}
 
+	public Employee findById(Long id) {
+		return repo.findById(id).orElse(null);
+	}
+
 }

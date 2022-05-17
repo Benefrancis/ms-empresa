@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,19 +24,26 @@ public class EmployeeController {
 
 	private static final Logger log = LoggerFactory.getLogger(EmployeeController.class);
 
-	@PostMapping(value = { "/api/employee", "/api/employee/" })
+	@PostMapping(value = { "/api/v0/employee", "/api/v0/employee/" })
 	public ResponseEntity<Employee> save(@RequestBody(required = true) Employee e) {
 		log.info("recebemos POST de Employee: " + e);
 		return ResponseEntity.ok().body(service.save(e));
 	}
 
 	@CrossOrigin
-	@GetMapping(value = { "/api/employee", "/api/employee/" })
+	@GetMapping(value = { "/api/v0/employee", "/api/v0/employee/" })
 	public ResponseEntity<Page<Employee>> lista(@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "50") Integer linesPerPage,
 			@RequestParam(value = "orderBy", defaultValue = "id") String orderBy,
 			@RequestParam(value = "direction", defaultValue = "DESC") String direction) {
 		log.info("recebemos GET de Employee");
 		return ResponseEntity.ok().body(service.findAll(page, linesPerPage, orderBy, direction));
+	}
+
+	@CrossOrigin
+	@GetMapping(value = { "/api/v0/employee/{id}", "/api/v0/employee/{id}" })
+	public ResponseEntity<Employee> findById(@PathVariable Long id) {
+		log.info("recebemos GET de Employee com id: " + id);
+		return ResponseEntity.ok().body(service.findById(id));
 	}
 }
